@@ -1,0 +1,55 @@
+<html>
+<head>
+	<title>getCookies</title>
+</head>
+<body>
+  <script type="text/javascript">
+  //第一种方式
+  window.onload = function getCookies() {
+  	  var cookie ={}
+  	  //获取所有cookies，输出string
+  	  var cookies = document.cookie;  
+  	  if(cookies == "") {return cookie}   
+  	  console.log(cookies)
+  	  //根据;号分割，从字符串成数组
+  	  var cookies = cookies.split(";")
+  	  for(var i = 0; i < cookies.length; i++) {
+  	  	//根据=号，再次分割
+  	  	ck = cookies[i].split("=");
+  	  	//第一个值作为key值
+  	  	var key = ck[0];
+  	  	key = decodeURIComponent(key);
+  	  	//第二个值作为value值
+  	  	var value = ck[1];
+  	  	value = decodeURIComponent(value);
+  	  	cookie[key] = value
+  	  }
+  	  return cookie
+  	}
+    //第二种方式
+	window.onload = function getCookies() {
+  	  var cookie ={};
+  	  //获取所有cookies，输出string
+  	  var all = document.cookie;  
+  	  if(all === '') {return cookie}
+  	  //将字符串从;号分割成数组   
+  	  var list = all.split(';');
+  	  for(var i = 0; i < list.length; i++) {
+  	  	var item = list[i];
+  	  	//获取=号出现的位置
+        var p = item.indexOf('=');
+        //获取到从0到=号位置的值
+        var name = item.substring(0,p);
+        //解码
+        name = decodeURIComponent(name);
+        //获取从=号后一位到结束的值
+        var value = item.substring(p+1);
+        //解码
+        value = decodeURIComponent(value);
+        cookie[name] = value;
+  	  }
+  	  return cookie;
+  	}
+  </script>
+</body>
+</html
